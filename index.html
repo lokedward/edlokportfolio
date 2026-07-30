@@ -58,11 +58,6 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
-        }
-        .media-frame img:hover {
-            transform: scale(1.03);
         }
         .frame-h { height: 20rem; }
         .frame-h-lg { height: 22rem; }
@@ -82,8 +77,7 @@
             pointer-events: none;
             transition: opacity 0.8s ease, transform 0.3s ease;
         }
-        .phone-slideshow img.slide.active { opacity: 1; pointer-events: auto; }
-        .phone-slideshow img.slide.active:hover { transform: translate(-50%, -50%) scale(1.02); }
+        .phone-slideshow img.slide.active { opacity: 1; }
         .slide-dots {
             position: absolute;
             bottom: 0.6rem;
@@ -115,64 +109,7 @@
             object-position: center;
             border-radius: 0.5rem;
         }
-        /* Lightbox */
-        #lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(6px);
-            padding: 2rem;
-        }
-        #lightbox.open { display: flex; }
-        #lightbox img {
-            max-width: 92vw;
-            max-height: 90vh;
-            border-radius: 0.75rem;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-            object-fit: contain;
-        }
-        .lb-btn {
-            position: absolute;
-            background: rgba(17,24,39,0.7);
-            border: 1px solid rgba(55,65,81,0.6);
-            color: #e2e8f0;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
-            user-select: none;
-        }
-        .lb-btn:hover { background: rgba(34,211,238,0.2); border-color: rgba(34,211,238,0.5); }
-        #lb-close { top: 1.5rem; right: 1.5rem; }
-        #lb-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
-        #lb-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
-        .zoom-hint {
-            position: absolute;
-            bottom: 0.5rem;
-            right: 0.5rem;
-            background: rgba(0,0,0,0.55);
-            color: #cbd5e1;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 0.2rem 0.5rem;
-            border-radius: 9999px;
-            opacity: 0;
-            transition: opacity 0.25s;
-            pointer-events: none;
-        }
         .media-wrap { position: relative; }
-        .media-wrap:hover .zoom-hint { opacity: 1; }
 </style>
 </head>
 <body class="overflow-x-hidden">
@@ -332,9 +269,8 @@
                         <div class="card group flex flex-col">
                             <div class="media-wrap mb-4">
                                 <div class="media-frame frame-h">
-                                    <img src="images/splitandgo.gif" alt="Split & Go app demo" data-full="images/splitandgo.gif">
+                                    <img src="images/splitandgo.gif" alt="Split & Go app demo">
                                 </div>
-                                <span class="zoom-hint">Click to enlarge</span>
                             </div>
                             <h3 class="text-xl font-bold">Split &amp; Go</h3>
                             <p class="text-gray-400 mt-2 text-sm flex-1">AI-powered receipt splitting app. Snap a photo, Gemini AI parses every line item, assign to friends, and settle up instantly. Mobile-first PWA.</p>
@@ -352,13 +288,12 @@
                             <div class="media-wrap mb-4">
                                 <div class="media-frame frame-h">
                                     <div class="phone-slideshow" data-slideshow>
-                                        <img src="images/threadlist1.png" alt="Threadlist wardrobe screen" data-full="images/threadlist1.png" data-gallery="threadlist" class="slide active">
-                                        <img src="images/threadlist2.png" alt="Threadlist AI Magic Fill screen" data-full="images/threadlist2.png" data-gallery="threadlist" class="slide">
-                                        <img src="images/threadlist3.png" alt="Threadlist curated essentials screen" data-full="images/threadlist3.png" data-gallery="threadlist" class="slide">
+                                        <img src="images/threadlist1.png" alt="Threadlist wardrobe screen" class="slide active">
+                                        <img src="images/threadlist2.png" alt="Threadlist AI Magic Fill screen" class="slide">
+                                        <img src="images/threadlist3.png" alt="Threadlist curated essentials screen" class="slide">
                                         <div class="slide-dots"></div>
                                     </div>
                                 </div>
-                                <span class="zoom-hint">Click to enlarge</span>
                             </div>
                             <h3 class="text-xl font-bold">Threadlist</h3>
                             <p class="text-gray-400 mt-2 text-sm flex-1">Digital wardrobe & AI outfit manager for iOS. Built in Swift/SwiftUI with an AI stylist that generates personalized outfit suggestions from your closet.</p>
@@ -376,9 +311,8 @@
                         <div class="card group flex flex-col">
                             <div class="media-wrap mb-4">
                                 <div class="media-frame frame-h">
-                                    <img src="images/supplystack.png" alt="SupplyStack dashboard" data-full="images/supplystack.png" class="fill-cover">
+                                    <img src="images/supplystack.png" alt="SupplyStack dashboard" class="fill-cover">
                                 </div>
-                                <span class="zoom-hint">Click to enlarge</span>
                             </div>
                             <h3 class="text-xl font-bold">SupplyStack</h3>
                             <p class="text-gray-400 mt-2 text-sm flex-1">Supply chain & inventory management platform. Track multi-component purchase orders from PO to delivery with real-time phase timelines and deadline monitoring.</p>
@@ -401,7 +335,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                         <div class="card group">
-                            <img src="images/spectatexr.jpg" alt="SpectateXR" data-full="images/spectatexr.jpg" class="rounded-lg mb-4 w-full h-48 object-cover cursor-zoom-in">
+                            <img src="images/spectatexr.jpg" alt="SpectateXR" class="rounded-lg mb-4 w-full h-48 object-cover">
                             <h3 class="text-xl font-bold">SpectateXR</h3>
                             <p class="text-gray-400 mt-2 text-sm">4th Place (AT&T Hackathon). Cross-platform AR/VR app for eSports viewers using 360° video and AR overlays.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
@@ -410,7 +344,7 @@
                         </div>
 
                         <div class="card group">
-                            <img src="images/inclass.jpg" alt="IN.CLASS" data-full="images/inclass.jpg" class="rounded-lg mb-4 w-full h-48 object-cover cursor-zoom-in">
+                            <img src="images/inclass.jpg" alt="IN.CLASS" class="rounded-lg mb-4 w-full h-48 object-cover">
                             <h3 class="text-xl font-bold">In Class</h3>
                             <p class="text-gray-400 mt-2 text-sm">AR classroom platform giving teachers a MR control panel to monitor student progress and deliver Mixed-Reality lessons.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
@@ -419,7 +353,7 @@
                         </div>
 
                         <div class="card group">
-                            <img src="images/lotmap.gif" alt="Fox ARchives" data-full="images/lotmap.gif" class="rounded-lg mb-4 w-full h-48 object-cover cursor-zoom-in">
+                            <img src="images/lotmap.gif" alt="Fox ARchives" class="rounded-lg mb-4 w-full h-48 object-cover">
                             <h3 class="text-xl font-bold">Fox ARchives</h3>
                             <p class="text-gray-400 mt-2 text-sm">Location-based mobile ARKit experience on the FOX Studio Lot, a gamified guided tour bridging narrative and immersive technology.</p>
                             <div class="mt-4 flex flex-wrap gap-2">
@@ -563,14 +497,6 @@
 
     </div>
 
-    <!-- Lightbox -->
-    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-        <div id="lb-close" class="lb-btn" aria-label="Close">&times;</div>
-        <div id="lb-prev" class="lb-btn" aria-label="Previous">&#8249;</div>
-        <div id="lb-next" class="lb-btn" aria-label="Next">&#8250;</div>
-        <img id="lb-img" src="" alt="">
-    </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -614,58 +540,6 @@
                 box.addEventListener('mouseenter', () => clearInterval(timer));
                 box.addEventListener('mouseleave', start);
                 start();
-            });
-        })();
-
-        // Lightbox: click any [data-full] image to view full-resolution
-        (function () {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lb-img');
-            const btnClose = document.getElementById('lb-close');
-            const btnPrev = document.getElementById('lb-prev');
-            const btnNext = document.getElementById('lb-next');
-            let group = [];
-            let index = 0;
-
-            function show(i) {
-                index = (i + group.length) % group.length;
-                lbImg.src = group[index].src;
-                lbImg.alt = group[index].alt;
-                const multi = group.length > 1;
-                btnPrev.style.display = multi ? 'flex' : 'none';
-                btnNext.style.display = multi ? 'flex' : 'none';
-            }
-
-            function open(imgEl) {
-                const galleryName = imgEl.getAttribute('data-gallery');
-                const items = galleryName
-                    ? Array.from(document.querySelectorAll('[data-gallery="' + galleryName + '"]'))
-                    : [imgEl];
-                group = items.map(el => ({ src: el.getAttribute('data-full') || el.src, alt: el.alt }));
-                show(items.indexOf(imgEl));
-                lb.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function close() {
-                lb.classList.remove('open');
-                document.body.style.overflow = '';
-                lbImg.src = '';
-            }
-
-            document.querySelectorAll('[data-full]').forEach(img => {
-                img.addEventListener('click', () => open(img));
-            });
-
-            btnClose.addEventListener('click', close);
-            btnPrev.addEventListener('click', () => show(index - 1));
-            btnNext.addEventListener('click', () => show(index + 1));
-            lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
-            document.addEventListener('keydown', (e) => {
-                if (!lb.classList.contains('open')) return;
-                if (e.key === 'Escape') close();
-                else if (e.key === 'ArrowLeft' && group.length > 1) show(index - 1);
-                else if (e.key === 'ArrowRight' && group.length > 1) show(index + 1);
             });
         })();
 
